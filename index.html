@@ -1,14 +1,49 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Library</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
     <body>
         <h1>Hello</h1>
-    
+        <table>
+            <caption>Book Library</caption>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Pages</th>
+                    <th>Read?</th>
+                </tr>
+            </thead>
+            <tbody id="library-table">
+
+            </tbody>
+        </table>
+
+        <button id="add-book">Add Book</button>
+
+        <dialog id="dialog">
+            <p>Greetings, one and all!</p>
+            <form id="submit-book" method="dialog">
+                <label for="bookTitle">Title</label>
+                <input id="bookTitle" name="title" required>
+
+                <label for="bookAuthor">Author</label>
+                <input id="bookAuthor" name="author" required>
+
+                <label for="bookPages">Pages</label>
+                <input type="number" id="bookPages" name="numPages" required>
+
+                <label for="bookRead">Read?</label>
+                <input type="checkbox" id="bookRead" name="read">
+
+                <input id="submit" type="submit">
+            </form>
+        </dialog>
     <script src="script.js"></script>
-    </body>
-    </html>
+</body>
+</html>
+
