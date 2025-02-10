@@ -25,32 +25,26 @@ function createTable() {
                 row.appendChild(cell);
             }
         });
-        
-        createCheckboxCell(book, row);
-        createDeleteButtonCell(index, row);
+    
+        const checkbox = document.createElement('input')
+        const cellCheck = document.createElement('td');
+        checkbox.type = "checkbox"
+        checkbox.checked = book.read;
+        cellCheck.appendChild(checkbox);
+        row.appendChild(cellCheck);
+
+        const deleteButton = document.createElement('button');
+        const cellDelete = document.createElement('td');
+        deleteButton.innerText = 'X';
+        deleteButton.setAttribute('data-index', index);
+        cellDelete.appendChild(deleteButton)
+        row.appendChild(cellDelete);
 
         table.appendChild(row);
         row.setAttribute('data-num', index);
     });
 }
 
-function createCheckboxCell(book, row) {
-    const checkbox = document.createElement('input')
-    const cellCheck = document.createElement('td');
-    checkbox.type = "checkbox"
-    checkbox.checked = book.read;
-    cellCheck.appendChild(checkbox);
-    row.appendChild(cellCheck);
-}
-
-function createDeleteButtonCell(index, row) {
-    const deleteButton = document.createElement('button');
-    const cellDeleteButton = document.createElement('td');
-    deleteButton.innerText = 'X';
-    deleteButton.setAttribute('data-index', index);
-    cellDeleteButton.appendChild(deleteButton)
-    row.appendChild(cellDeleteButton);
-}
 
 function deleteTable(){ //Removes all HTML tr elements, providing a clean slate to create the table.
     document.querySelectorAll('tr[data-num]').forEach(tr => tr.remove());
