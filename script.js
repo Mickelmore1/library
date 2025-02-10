@@ -10,6 +10,12 @@ function Book(title, author, pages, read){ //Creates a book object.
     this.read = read;
 }
 
+Book.prototype.toggleBookRead = function(){ 
+    if (this.read == true) {
+        this.read = false
+    } else {
+        this.read = true
+    }}
 
 function createTable() {
     const table = document.getElementById('library-table');
@@ -37,8 +43,13 @@ function createTable() {
 function createCheckboxCell(book, row) {
     const checkbox = document.createElement('input')
     const cellCheck = document.createElement('td');
+
     checkbox.type = "checkbox"
     checkbox.checked = book.read;
+    checkbox.addEventListener('click', () => { //Adding an event listener with the created checkbox to toggle book read status
+        book.toggleBookRead(); 
+    });
+
     cellCheck.appendChild(checkbox);
     row.appendChild(cellCheck);
 }
@@ -102,11 +113,6 @@ function displayPopupForm(){
     );
 }
 
-function toggleBookRead() {
-
-}
-
-
 //Dummy books added to display a table.
 addBookToLibrary('Harry Potter', 'JK Rowling', '350', true);
 addBookToLibrary('Kensuke\'s Kingdom', 'Michael Morpurgo', '161', false);
@@ -115,4 +121,3 @@ createTable();
 displayPopupForm();
 submitBook();
 userPressDelete();
-
