@@ -99,6 +99,8 @@ function displayPopupForm(){
     );
 }
 
+document.getElementById('close').addEventListener('click', () => dialog.close());
+
 //Dummy books added to display a table.
 addBookToLibrary('Harry Potter', 'JK Rowling', '350', true);
 addBookToLibrary('Kensuke\'s Kingdom', 'Michael Morpurgo', '161', false);

@@ -13,6 +13,7 @@
 
 
 body {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 10fr 1fr;
@@ -31,12 +32,16 @@ footer {
 }
 
 header {
-
     background: #16A085;
     background: #2C3E50;
     color: white;
-    font-size: 2rem;
+    font-size: 1rem;
     min-height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
 .container {
@@ -58,6 +63,12 @@ footer {
     background: #2C3E50;
     color: white;
     min-height: 70px;
+}
+
+svg {
+    width: 64px;
+    height: auto;
+    fill: white
 }
 
 table {
@@ -125,9 +136,65 @@ input:hover {
 }
 
 dialog {
-    position: absolute;
-    left: 50vw;
-    top: 50vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
+
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    box-shadow: 0px 0px 2px rgb(179, 179, 179);
 }
 
+dialog::backdrop {
+    backdrop-filter: grayscale(1);
+}
+
+form {
+    height: 100%;
+    width: auto;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+form div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+form input {
+    padding: 4px 4px;
+    border: 2px solid #e9e8e8;
+    border-radius: 8px;
+    cursor: default;
+}
+
+.input:hover {
+    cursor: default;
+}
+
+.group {
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#submit,
+#close {
+    padding: 0.5rem 0.5rem;
+    background: #04AA6D;
+    color: white;
+    border: 2px solid #e9e8e8;
+    border-radius: 8px;
+}
+
+#submit:hover,
+#close:hover {
+    opacity: 0.7;
+}
