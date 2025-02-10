@@ -59,14 +59,12 @@ function createDeleteButtonCell(index, row) {
     const cellDeleteButton = document.createElement('td');
     deleteButton.innerText = 'X';
     deleteButton.setAttribute('data-index', index);
-    cellDeleteButton.appendChild(deleteButton)
+    deleteButton.addEventListener('click', () => { //Adding an event listener with the created X to delete a book.
+        deleteBookFromLibrary(index);
+    })
+    cellDeleteButton.appendChild(deleteButton);
     row.appendChild(cellDeleteButton);
 }
-
-function deleteTable(){ //Removes all HTML tr elements, providing a clean slate to create the table.
-    document.querySelectorAll('tr[data-num]').forEach(tr => tr.remove());
-}
-
 
 function submitBook() { //When a user submits a book, it updates myLibrary array, deletes the old table and creates a new one based on the updated myLibrary array.
     form.addEventListener('submit', (event) => {
@@ -90,22 +88,15 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));    
 }
 
-
-function userPressDelete(){
-    document.querySelector('tbody').addEventListener('click', (event) => {
-        if (event.target.matches('[data-index]')) {
-            deleteBookFromLibrary(event.target.dataset.index);
-        }
-    }); 
-}
-
-
 function deleteBookFromLibrary(index){
     myLibrary.splice(index, 1);
     deleteTable();
     createTable();
 }
 
+function deleteTable(){ //Removes all HTML tr elements, providing a clean slate to create the table.
+    document.querySelectorAll('tr[data-num]').forEach(tr => tr.remove());
+}
 
 function displayPopupForm(){
     document.getElementById('add-book').addEventListener('click', () => 
@@ -120,4 +111,4 @@ addBookToLibrary('Kensuke\'s Kingdom', 'Michael Morpurgo', '161', false);
 createTable();
 displayPopupForm();
 submitBook();
-userPressDelete();
+
