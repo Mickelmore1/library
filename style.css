@@ -82,6 +82,10 @@ th {
     color: white;
 }
 
+.th-min-width {
+    min-width: 200px;;
+}
+
 th,
 td {
     border: 1px solid #ddd;
