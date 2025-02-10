@@ -11,19 +11,14 @@ function Book(title, author, pages, read){ //Creates a book object.
 }
 
 Book.prototype.toggleBookRead = function(){ 
-    if (this.read == true) {
-        this.read = false
-    } else {
-        this.read = true
-    }}
+    this.read = !this.read;
+};
 
 function createTable() {
     const table = document.getElementById('library-table');
 
     myLibrary.forEach((book, index) => {
-
         const row = document.createElement('tr');
-
           bookInfo.forEach((property, index) => {
             if (index < bookInfo.length - 1){
                 const cell = document.createElement('td');
