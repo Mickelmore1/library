@@ -1,15 +1,16 @@
 const myLibrary = [];
 const dialog = document.getElementById('dialog');
 const form = document.getElementById('submit-book');
+const bookInfo = ['title', 'author', 'pages', 'read'];
 
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
-    if (read == 'On'){
+    if (read == true){
         this.read = 'Yes'
     } else {
-        this.read = "No"
+        this.read = 'No'
     };
 }
 
@@ -17,36 +18,45 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));    
 }
 
-function displayTable() {
+function createTable() {
     const table = document.getElementById('library-table');
 
     myLibrary.forEach((book, index) => {
         const row = document.createElement('tr');
 
-        ['title', 'author', 'pages', 'read'].forEach(property => {
+        bookInfo.forEach(property => {
             const cell = document.createElement('td');
             cell.textContent = book[property];
             row.appendChild(cell);
         });
+        
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = 'X';
+        deleteButton.classList.add('delete');
+        row.appendChild(deleteButton);
+
 
         table.appendChild(row);
         row.setAttribute('data-num', index)
     });
 }
 
+function deleteTable(){
+    document.querySelectorAll('tr[data-num]').forEach(tr => tr.remove());
+}
+
 function submitBook() {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        ['bookTitle', 'bookAuthor','bookPages', 'bookRead'].forEach(property => {
+        bookInfo.forEach(property => {
             return property = document.getElementById(property);
         });
 
+        addBookToLibrary(title.value, author.value, pages.value, read.checked);
 
-        addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.value);
-
-        document.querySelectorAll('tr[data-num]').forEach(tr => tr.remove());
-        displayTable();
+        deleteTable();
+        createTable();
 
         dialog.close();
         form.reset();
@@ -63,11 +73,10 @@ function popupForm(){
 
 
 
+addBookToLibrary('Harry Potter', 'JK Rowling', '350', true);
+addBookToLibrary('Kensuke\'s Kingdom', 'Michael Morpurgo', '161', false);
 
-addBookToLibrary('Harry Potter', 'JK Rowling', '350', 'On');
-addBookToLibrary('Kensuke\'s Kingdom', 'Michael Morpurgo', '161', 'Off');
-
-displayTable();
+createTable();
 popupForm();
 submitBook();
 
